@@ -3,7 +3,6 @@
 import React, { FC, useEffect, useState } from "react";
 import UserAnalytics from "../Analytics/UserAnalytics";
 import OrdersAnalytics from "../Analytics/OrdersAnalytics";
-// import AllInvoices from "../Order/AllInvoices";
 import axios from "axios";
 
 type Props = {
@@ -20,12 +19,10 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
   useEffect(() => {
 		(async () => {
 			try {
-				const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL_BE}/api/v1/reports/users`);
-
-        // setTimeout(() => {
-          
-        // }, 3000);
-
+				// const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL_BE}/api/v1/reports/users`);
+        const res = await axios.get(`/api/dashboard/teacher/revenue`);
+        // debugger;
+        console.log(res.data);
         setData(res?.data)
         setIsLoading(false)
 			} catch (error) {
@@ -35,7 +32,8 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
 
     (async () => {
 			try {
-				const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL_BE}/api/v1/reports/orders`);
+				// const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_URL_BE}/api/v1/reports/orders`);
+				const res = await axios.get(`/api/dashboard/teacher/purchase`);
 				setOrdersData(res?.data)
         setOrdersLoading(false)
 			} catch (error) {

@@ -6,7 +6,7 @@
     },
     "type-check": {},
     "lint": {
-      "cache": true,
+      "cache": false,
       "persistent": true
     }
   }

@@ -37,6 +37,8 @@ export async function POST(req: Request) {
       }
     });
 
+    console.log('Purchase created');
+
   } else {
     return new NextResponse(`Webhook Error: Unhandled event type ${event.type}`, { status: 200 });
   }

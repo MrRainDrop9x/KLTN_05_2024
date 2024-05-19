@@ -35,7 +35,7 @@ export const ConfirmModal = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>
+          <AlertDialogAction onClick={onConfirm} className="mt-2">
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>

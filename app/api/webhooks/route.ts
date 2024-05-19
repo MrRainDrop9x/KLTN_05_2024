@@ -1,6 +1,7 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { WebhookEvent } from '@clerk/nextjs/server';
+import { db } from "@/lib/db";
 
 export async function POST(req: Request) {
 
@@ -53,22 +54,28 @@ export async function POST(req: Request) {
         let fullName = data.first_name + ' ' + data.last_name;
         let avatarUrl = data.profile_image_url || data.image_url;
         let userId = data.id;
-        const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL_BE}/api/v1/social-auth`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
+        // const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL_BE}/api/v1/social-auth`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         email: emailAddress,
+        //         name: fullName,
+        //         avatarUrl: avatarUrl,
+        //         userId: userId,
+        //     }),
+        // });
+        await db.users.create({
+            data: {
                 email: emailAddress,
                 name: fullName,
                 avatarUrl: avatarUrl,
                 userId: userId,
-            }),
+            }
         });
+        console.log('Account created');
 
-        if (!response.ok) {
-            console.error('Error calling API:', await response.text());
-        }
     }
 
     return new Response('', { status: 200 });

@@ -5,6 +5,7 @@ import { ToastProvider } from '@/components/providers/toaster-provider'
 import { ConfettiProvider } from '@/components/providers/confetti-provider';
 import { ClerkProvider } from '@clerk/nextjs';
 import "@uploadthing/react/styles.css";
+import ChatbotAI from '@/chatbotAI/ChatbotAI';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <ConfettiProvider />
           <ToastProvider />
           <div>{children}</div>
+          <ChatbotAI />
         </body>
       </html>
       </ClerkProvider>

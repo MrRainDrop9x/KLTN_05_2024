@@ -34,6 +34,7 @@
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@sendbird/chat-ai-widget": "^1.5.4",
     "@tanstack/react-table": "^8.9.11",
     "@types/bson": "^4.2.0",
     "@types/react": "^18.2.74",
