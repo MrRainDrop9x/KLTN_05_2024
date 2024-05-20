@@ -15,7 +15,7 @@ export type FormattedCustomersTable = {
     total_paid: number;
 };
 
-export default async function CustomersTable({
+export default function CustomersTable({
   customers,
 }: {
   customers: FormattedCustomersTable[];
@@ -25,7 +25,7 @@ export default async function CustomersTable({
       <div className={`${lusitana.className} mb-3 text-xl md:text-2xl mt-6 ml-4`}>
         Customers
       </div>
-      <Search placeholder="Search customers..." />
+      {/* <Search placeholder="Search customers..." /> */}
       <div className="mt-6 flow-root">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">

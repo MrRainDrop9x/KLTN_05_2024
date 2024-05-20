@@ -1,63 +1,27 @@
-// import { fetchFilteredCustomers} from '@/lib/data';
+'use client';
+import React, { useEffect, useState } from "react";
 import CustomersTable from '@/components/customers/table';
-import { Metadata } from 'next';
-import { db } from '@/lib/db';
-
-export const metadata: Metadata = {
-  title: 'Customers',
-};
-
-type FormattedCustomersTable = {
-  userId: string;
-  name: string;
-  email: string;
-  avatarUrl: string;
-  total_invoices: number;
-  total_paid: number;
-};
+import axios from "axios";
 
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) {
-  const query = searchParams?.query || '';
+export default function Page() {
+  const [data, setData] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<any>(true);
 
-  let a = await db.users.findMany({
-    where: {
-        OR: [
-            { name: { contains: query, mode: "insensitive" } },
-            { email: { contains: query, mode: "insensitive" } }
-        ],
-    },
-    include: {
-        purchases: {
-            include: {
-                course: true,
-            },
-        },
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`/api/dashboard/teacher/customers`);
+      setData(res?.data);
+    
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-});
+  };
 
-let data: FormattedCustomersTable[] = [];
-a.forEach((user) => {
-    let total_invoices = user.purchases.length;
-    let total_paid = user.purchases.reduce((acc, curr: any) => acc + curr?.course?.price, 0);
-    data.push({
-        userId: user.id,
-        name: user.name,
-        email: user.email,
-        avatarUrl: user?.avatarUrl || "",
-        total_invoices: total_invoices,
-        total_paid: total_paid || 0,
-    });
-});
-
-  // const customers = data;
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <main>

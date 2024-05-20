@@ -20,7 +20,6 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
 		(async () => {
 			try {
         const res = await axios.get(`/api/dashboard/teacher/revenue`);
-        console.log(res.data);
         setData(res?.data)
         setIsLoading(false)
 			} catch (error) {
