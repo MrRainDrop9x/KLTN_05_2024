@@ -22,6 +22,11 @@ const nextConfig = {
           hostname: 'images.clerk.dev',
           port: '',
         },
+        {
+          protocol: 'https',
+          hostname: 'www.gravatar.com',
+          port: '',
+        },
       ],
     },
     // experimental: {

@@ -88,6 +88,7 @@ export default function ChatbotAI (){
       enableEmojiFeedback={customConstants.enableEmojiFeedback}
       enableMention={customConstants.enableMention}
       enableMobileView={customConstants.enableMobileView}
+      autoOpen={customConstants.autoOpen}
     />
     </div>
   );
