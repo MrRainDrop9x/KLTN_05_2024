@@ -26,7 +26,6 @@ const ChapterIdPage = async ({
   const {
     chapter,
     course,
-    muxData,
     attachments,
     nextChapter,
     userProgress,
@@ -47,8 +46,6 @@ const ChapterIdPage = async ({
     isLocked = false;
   }
 
-  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
-
   return ( 
     <div>
       {userProgress?.isCompleted && (
@@ -67,13 +64,8 @@ const ChapterIdPage = async ({
         <div className="flex justify-center items-center">
           <div className="p-4 max-w-[500px] flex justify-center items-center">
             <VideoPlayer
-              chapterId={params.chapterId}
-              title={chapter.title}
-              courseId={params.courseId}
-              nextChapterId={nextChapter?.id}
-              playbackId={muxData?.playbackId!}
               isLocked={isLocked}
-              completeOnEnd={completeOnEnd}
+              videoUrl={chapter.videoUrl || ''}
             />
           </div>
         </div>
