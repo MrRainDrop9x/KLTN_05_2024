@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Search from '@/components/ui/search';
 import { Lusitana } from 'next/font/google';
+import { CardSkeleton } from '../skeleton';
 
 const lusitana = Lusitana({
   weight: ['400', '700'],
@@ -16,9 +17,10 @@ export type FormattedCustomersTable = {
 };
 
 export default function CustomersTable({
-  customers,
+  customers, isLoading
 }: {
   customers: FormattedCustomersTable[];
+  isLoading: boolean;
 }) {
   return (
     <div className="w-full">
@@ -26,7 +28,7 @@ export default function CustomersTable({
         Customers
       </div>
       {/* <Search placeholder="Search customers..." /> */}
-      <div className="mt-6 flow-root">
+      {isLoading ? <CardSkeleton /> : (<div className="mt-6 flow-root">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
@@ -119,7 +121,8 @@ export default function CustomersTable({
             </div>
           </div>
         </div>
-      </div>
+      </div>)}
+      
     </div>
   );
 }

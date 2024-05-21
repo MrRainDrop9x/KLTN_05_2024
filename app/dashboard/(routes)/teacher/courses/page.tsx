@@ -14,9 +14,9 @@ const CoursesPage = async () => {
   }
 
   const courses = await db.course.findMany({
-    // where: {
-    //   userId,
-    // },
+    where: {
+      userId,
+    },
     orderBy: {
       createdAt: "desc",
     },

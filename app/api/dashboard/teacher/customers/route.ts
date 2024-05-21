@@ -5,15 +5,16 @@ import { db } from "@/lib/db";
 import { isTeacher } from "@/lib/teacher";
 
 export async function GET(
-    req: Request,
+    req: Request
 ) {
     try {
         const { userId } = auth();
-
+        // const { query } = params;
+        // console.log("query", query);
+        // console.log("xxx");
         if (!userId || !isTeacher(userId)) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
-
         let a = await db.users.findMany({
             // where: {
             //     OR: [
@@ -27,7 +28,8 @@ export async function GET(
                         course: true,
                     },
                 },
-            }
+            },
+
         });
 
         let data: FormattedCustomersTable[] = [];
